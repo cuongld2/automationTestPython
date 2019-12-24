@@ -11,6 +11,12 @@ pytest-html = "*"
 pytest-testrail = "*"
 selenium = "*"
 requests = "*"
+pyyaml = "*"
+mysql-connector-python = "*"
+beautifulsoup4 = "*"
+delay-assert = "*"
+delayed-assert = "*"
+python-dateutil = "*"
 
 [requires]
 python_version = "3.6"

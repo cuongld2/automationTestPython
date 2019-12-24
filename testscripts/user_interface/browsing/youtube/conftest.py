@@ -3,8 +3,11 @@ from datetime import datetime
 import pytest
 from selenium.webdriver import Firefox, FirefoxProfile
 
+from utilities.file_handles import FilesHandle
+
 firefox_system_profile = r'/home/cuongld/.mozilla/firefox/jxhdfsma.donald'
 browser = None
+files_handle = FilesHandle()
 
 
 @pytest.mark.hookwrapper
@@ -30,7 +33,7 @@ def pytest_runtest_makereport(item):
                 print("Cannot capture screenshot!!!")
 
         # if file_name:
-        html = '<div><img src="screenshots/%s" style="width:600px;height:228px;" ' \
+        html = '<div><img src="resources/screenshots/%s" style="width:600px;height:228px;" ' \
                'onclick="window.open(this.src)" align="right"/></div>' % filename
         extra.append(pytest_html.extras.html(html))
     report.extra = extra
@@ -59,6 +62,11 @@ def firefox_browse_youtube():
     yield browser
     browser.quit()
 
+
+@pytest.fixture(scope='session', autouse=True)
+def clear_screen_shot_folder():
+    current_dir = get_current_dir()[0]
+    files_handle.delete_files_in_folder(current_dir + "/resources/screenshots", "png")
 
 
 

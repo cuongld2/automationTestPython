@@ -1,0 +1,6 @@
+api:
+  user: /user
+  authenticate: /authenticate
+  blog: /blog
+  coccoc_music:
+    listing: /listing
