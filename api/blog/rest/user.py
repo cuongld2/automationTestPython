@@ -3,7 +3,7 @@ import json
 import requests
 
 from config.environment import API_SERVER_URL
-from config.path import API_USER_PATH
+from config.path import API_USER_PATH, API_AUTHENTICATE_PATH
 from models.json_object.blogApp.rest.user import userinfo, UserInfo
 
 
@@ -18,4 +18,9 @@ class User:
         user_info_instance = UserInfo(username, password, fullname)
         s = json.dumps(user_info_instance.__dict__)
         return requests.post(API_SERVER_URL + API_USER_PATH, data=s, headers={'Content-Type': 'application/json'})
+
+    def authen_user_login(self, username, password):
+        user_info_instance = UserInfo(username, password, None)
+        s = json.dumps(user_info_instance.__dict__)
+        return requests.post(API_SERVER_URL + API_AUTHENTICATE_PATH, data=s, headers={'Content-Type': 'application/json'})
 

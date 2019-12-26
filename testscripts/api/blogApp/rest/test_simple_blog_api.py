@@ -1,3 +1,5 @@
+import json
+
 from pytest_testrail.plugin import pytestrail
 from api.blog.rest.user import User
 from utilities.database import RestAPIDatabase
@@ -28,6 +30,20 @@ class TestUserInfo:
             assert 200 == response.status_code
         finally:
             self.restapi_query.delete_user_info_by_username(set_up_mysql, username)
+
+    @pytestrail.case('C7')
+    def test_authenticate_user_success(self, set_up_mysql):
+        username = self.random_gen.random_string(8) + '@gmail.com'
+        try:
+            response = self.user_api.create_new_user_data_class(username, 'Abcd12345$', 'Le Dinh Cuong')
+            assert 200 == response.status_code
+            response = self.user_api.authen_user_login(username, 'Abcd12345$')
+            assert response.status_code == 200
+            token_object = json.loads(response.text)
+            assert token_object['token'] is not None
+        finally:
+            self.restapi_query.delete_user_info_by_username(set_up_mysql, username)
+
 
 
 

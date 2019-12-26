@@ -14,6 +14,7 @@ API_AUTHENTICATE_PATH = get_path_info()['api']['authenticate']
 API_BLOG_PATH = get_path_info()['api']['blog']
 
 API_COCCOC_MUSIC_LISTING = get_path_info()['api']['coccoc_music']['listing']
+API_GRAPH_QL_PATH = '/graphql'
 
 
 
