@@ -14,7 +14,6 @@ requests = "*"
 pyyaml = "*"
 mysql-connector-python = "*"
 beautifulsoup4 = "*"
-delay-assert = "*"
 delayed-assert = "*"
 python-dateutil = "*"
 
